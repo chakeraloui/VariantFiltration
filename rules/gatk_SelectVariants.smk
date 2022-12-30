@@ -1,6 +1,6 @@
 rule gatk_SelectVariants:
     input:
-        vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated.filtered.vcf.gz"
+        vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated_filtered.vcf.gz"
         
     output:
         vcf1 = protected("aligned_reads/{family}_raw_snps.vcf.gz"),

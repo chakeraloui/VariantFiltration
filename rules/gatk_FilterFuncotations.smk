@@ -1,8 +1,8 @@
 rule gatk_FilterFuncotations:
     input:
-         vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated.vcf"
+         vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated.vcf.gz"
     output:
-        vcf = protected( "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated.filtered.vcf.gz")
+        vcf = protected( "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated_filtered.vcf.gz")
         
     params:
         maxmemory = expand('"-Xmx{maxmemory}"', maxmemory = config['MAXMEMORY']),

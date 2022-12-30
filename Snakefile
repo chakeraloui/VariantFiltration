@@ -76,17 +76,17 @@ if config['VQSR'] == "No" or config['VQSR'] == 'no':
 ##### Load rules #####
 #localrules: multiqc
 
-#if config['VQSR'] == "No" or config['VQSR'] == "no":
-include: "rules/gatk_VariantFiltration.smk"
-include: "rules/gatk_ValidateVariants.smk"
-include: "rules/gatk_Funcotator.smk"
-include: "rules/gatk_FilterFuncotations.smk"
-include: "rules/gatk_SelectVariants.smk"
+if config['VQSR'] == "No" or config['VQSR'] == "no":
+    include: "rules/gatk_VariantFiltration.smk"
+    include: "rules/gatk_ValidateVariants.smk"
+    include: "rules/gatk_Funcotator.smk"
+    include: "rules/gatk_FilterFuncotations.smk"
+    include: "rules/gatk_SelectVariants.smk"
 
-#if config['VQSR'] == "Yes" or config['VQSR'] == "yes":
- #   include: "rules/gatk_VariantFiltration10000.smk"
-  #  include: "rules/gatk_VariantRecalibrator10000.smk"
-   # include: "rules/gatk_ApplyVQSR10000.smk"
+if config['VQSR'] == "Yes" or config['VQSR'] == "yes":
+    include: "rules/gatk_VariantFiltration10000.smk"
+    include: "rules/gatk_VariantRecalibrator10000.smk"
+    include: "rules/gatk_ApplyVQSR10000.smk"
 
 
 

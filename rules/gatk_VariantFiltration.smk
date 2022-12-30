@@ -2,7 +2,7 @@ rule VariantFiltration:
     input:
          vcf = "aligned_reads/{family}_raw_snps_indels_tmp_combined.g.vcf.gz"
     output:
-        vcf = protected("aligned_reads/{family}_raw_snps_indels_hard_filter.vcf")
+        vcf = protected("aligned_reads/{family}_raw_snps_indels_hard_filter.vcf.gz")
         
     params:
         maxmemory = expand('"-Xmx{maxmemory}"', maxmemory = config['MAXMEMORY']),

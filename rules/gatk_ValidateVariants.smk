@@ -1,9 +1,9 @@
 rule gatk_ValidateVariants:
     input:
-        vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter.vcf",
+        vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter.vcf.gz",
         refgenome = expand("{refgenome}", refgenome = config['REFGENOME'])
     output:
-        vcf = protected("aligned_reads/{family}_raw_snps_indels_hard_filter_validated.vcf")
+        vcf = protected("aligned_reads/{family}_raw_snps_indels_hard_filter_validated.vcf.gz")
     params:
         maxmemory = expand('"-Xmx{maxmemory}"', maxmemory = config['MAXMEMORY']),
         dbSNP_vcf = config['dbSNP'],
