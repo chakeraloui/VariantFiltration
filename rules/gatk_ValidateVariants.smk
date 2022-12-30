@@ -15,7 +15,7 @@ rule gatk_ValidateVariants:
     conda:
         "../envs/gatk4.yaml"
     message:
-        "validating {family} vcf using ValidateVariants "
+        "validating  vcf using ValidateVariants "
     shell:
         """ gatk --java-options "-Xms6000m -Xmx6500m" \
         ValidateVariants \
@@ -23,5 +23,5 @@ rule gatk_ValidateVariants:
         -R {input.refgenome} \
         -L {params.intervals} \
         --validation-type-to-exclude ALLELES \
-        --dbsnp {params.dbsnp_vcf} \
+        --dbsnp {params.dbSNP_vcf} \
         --no-overlaps &>{log}"""

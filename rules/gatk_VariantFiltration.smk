@@ -19,6 +19,6 @@ rule VariantFiltration:
     shell:
         """gatk VariantFiltration  \
         -V {input.vcf} \
-        {params intervals} \
+        {params.intervals} \
         --filter-expression "QD < 2.0 || FS > 30.0 || SOR > 3.0 || MQ < 40.0 || MQRankSum < -3.0 || ReadPosRankSum < -3.0" \        --filter-name "HardFiltered" \
         -O {output.vcf} &> {log}"""
