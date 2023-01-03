@@ -23,4 +23,22 @@ rule gatk_ApplyVQSR:
     message:
         "Successively apply the indel and SNP recalibrations to the full callset using ApplyVQSR on {input.vcf}"
     shell:
-        " gatk --java-options {params.maxmemory}     ApplyVQSR  -V {input.vcf2}  --recal-file {input.indels_recal}  --tranches-file {input.indels_tranches}  --truth-sensitivity-filter-level 99.7  --create-output-variant-index true    -mode INDEL  -O {output.vcf2} && gatk --java-options {params.maxmemory}   ApplyVQSR   -V {output.vcf2}  --recal-file {input.snps_recal}  --tranches-file {input.snps_tranches}     --truth-sensitivity-filter-level 99.7   --create-output-variant-index true -mode SNP  -O snp.recalibrated.vcf.gz &> {log}"
+        """ gatk --java-options {params.maxmemory}     ApplyVQSR  \
+        -V {input.vcf2} \
+        --recal-file {input.indels_recal}  \
+        --tranches-file {input.indels_tranches}  \
+        --truth-sensitivity-filter-level 99.0  \
+        --create-output-variant-index true    \
+        --use-allele-specific-annotations \
+        -mode INDEL  \
+        -O {output.vcf2} \
+        && \
+        gatk --java-options {params.maxmemory}   ApplyVQSR   \
+        -V {output.vcf2}  \
+        --recal-file {input.snps_recal}  \
+        --tranches-file {input.snps_tranches}     \
+        --truth-sensitivity-filter-level 99.7   \
+        --create-output-variant-index true \
+        --use-allele-specific-annotations false \
+        -mode SNP  \
+        -O snp.recalibrated.vcf.gz &> {log}"""

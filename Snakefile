@@ -87,6 +87,7 @@ if config['VQSR'] == "Yes" or config['VQSR'] == "yes":
     include: "rules/gatk_VariantFiltration10000.smk"
     include: "rules/gatk_VariantRecalibrator10000.smk"
     include: "rules/gatk_ApplyVQSR10000.smk"
+    
 
 
 
