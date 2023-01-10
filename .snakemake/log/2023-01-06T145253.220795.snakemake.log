@@ -1,4 +1,0 @@
-NameError in line 15 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_Funcotator.smk:
-name 'ALL' is not defined
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile", line 92, in <module>
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_Funcotator.smk", line 15, in <module>

@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 1 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_FilterFuncotations.smk:
-Missing input files for rule gatk_FilterFuncotations:
-aligned_reads/DAMICO_raw_snps_indels_hard_filter_verified_annotated.vcf.gz

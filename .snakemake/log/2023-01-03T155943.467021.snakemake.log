@@ -1,3 +1,0 @@
-WorkflowError in line 87 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile:
-Failed to open /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantFiltration10000.smk.
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile", line 87, in <module>

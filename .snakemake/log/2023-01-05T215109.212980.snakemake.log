@@ -1,3 +1,0 @@
-SyntaxError in line 13 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_ApplyVQSR10000.smk:
-invalid syntax
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile", line 89, in <module>

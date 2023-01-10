@@ -1,4 +1,0 @@
-NameError in line 14 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantRecalibrator10000.smk:
-name 'family' is not defined
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile", line 88, in <module>
-  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantRecalibrator10000.smk", line 14, in <module>

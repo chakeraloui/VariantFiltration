@@ -3,3 +3,4 @@ f/
 config/
 benchmarks/
 aligned_reads/
+.snakemake/
