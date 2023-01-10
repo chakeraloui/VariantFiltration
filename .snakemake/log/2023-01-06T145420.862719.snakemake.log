@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 1 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantEval.smk:
+Missing input files for rule VariantEval:
+aligned_reads/DAMICO_raw_snps_indels_recalibrated.vcf.gz

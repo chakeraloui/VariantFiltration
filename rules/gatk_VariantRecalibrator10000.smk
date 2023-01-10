@@ -1,17 +1,17 @@
 rule VariantRecalibrator:
     input:
-        vcf = "aligned_reads/{family}_raw_snps_indels_sitesonly.vcf.gz"
+        vcf = "annotation_filtration/{family}_raw_snps_indels.vcf.gz"
     output:
-        snps_recal = protected("aligned_reads/{family}_raw_snps.recal"),
-        indels_recal= protected("aligned_reads/{family}_raw_indels.recal"),
-        snps_tranches = protected("aligned_reads/{family}_raw_snps.tranches"),
-        indels_tranches = protected("aligned_reads/{family}_raw_indels.tranches")
-        
+        snps_recal = protected("annotation_filtration/{family}_raw_snps.recal"),
+        indels_recal= protected("annotation_filtration/{family}_raw_indels.recal"),
+        indels_tranches=protected("annotation_filtration/{family}_raw_indels.tranches"),
+        snps_tranches= protected("annotation_filtration/{family}_raw_snps.tranches"),
     params:
         maxmemory = expand('"-Xmx{maxmemory}"', maxmemory = config['MAXMEMORY']),
         threads= expand('"-XX:ParallelGCThreads={threads}"', threads = config['THREADS']),
         indels_resources=get_recal_indels_resources_command,
-        snps_resources=get_recal_snps_resources_command  
+        snps_resources=get_recal_snps_resources_command,
+        plot="annotation_filtration/{family}"
     log:
         "logs/VariantRecalibrator10000/{family}.log"
     benchmark:
@@ -32,7 +32,8 @@ rule VariantRecalibrator:
          -an FS -an ReadPosRankSum -an MQRankSum -an QD -an SOR -an DP \
          -mode INDEL \
          --max-gaussians 4 \
-         {params.indels_resources}
+         {params.indels_resources}  \
+         --rscript-file {params.plot}_indel1.plots.R \
          &&\
           gatk   VariantRecalibrator  \
           -V {input.vcf}  \
@@ -45,5 +46,6 @@ rule VariantRecalibrator:
           -an QD -an MQRankSum -an ReadPosRankSum -an FS -an MQ -an SOR -an DP  \
           -mode SNP  \
           --max-gaussians 6 \
-          {params.snps_resources}
-          &> {log}"""
+          {params.snps_resources} \
+          --rscript-file {params.plot}_indel1.plots.R \
+          &>> {log}"""

@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	VariantFiltration
+	1	VariantRecalibrator
+	1	all
+	1	gatk_ApplyVQSR
+	4
+
+[Tue Jan  3 16:42:19 2023]
+Job 2: HardFilterAndMakeSitesOnlyVcf on aligned_reads/DAMICO_raw_snps_indels_tmp_combined.g.vcf.gz
+
+Write-protecting output file aligned_reads/DAMICO_raw_snps_indels_excesshet.vcf.gz.
+Write-protecting output file aligned_reads/DAMICO_raw_snps_indels_sitesonly.vcf.gz.
+[Tue Jan  3 16:55:24 2023]
+Finished job 2.
+1 of 4 steps (25%) done
+
+[Tue Jan  3 16:55:24 2023]
+Job 3: Calculate VQSLOD tranches for indels  and snpusing VariantRecalibrator on aligned_reads/DAMICO_raw_snps_indels_sitesonly.vcf.gz
+
+Waiting at most 5 seconds for missing files.
+MissingOutputException in line 1 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantRecalibrator10000.smk:
+Missing files after 5 seconds:
+aligned_reads/DAMICO_raw_snps.recal
+aligned_reads/DAMICO_raw_indels.recal
+aligned_reads/DAMICO_raw_snps.tranches
+aligned_reads/DAMICO_raw_indels.tranches
+This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait.
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/.snakemake/log/2023-01-03T164219.037948.snakemake.log

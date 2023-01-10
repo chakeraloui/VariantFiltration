@@ -1,0 +1,3 @@
+SyntaxError in line 21 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_VariantFiltration10000.smk:
+EOF in multi-line string (gatk_VariantFiltration10000.smk, line 21)
+  File "/mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/Snakefile", line 87, in <module>

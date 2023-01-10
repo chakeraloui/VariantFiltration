@@ -1,0 +1,47 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	VariantEval
+	1	VariantRecalibrator
+	1	all
+	1	gatk_ApplyVQSR
+	4
+
+[Thu Jan  5 21:52:42 2023]
+Job 3: Calculate VQSLOD tranches for indels  and snpusing VariantRecalibrator on aligned_reads/DAMICO_raw_snps_indels.vcf.gz
+
+Write-protecting output file aligned_reads/DAMICO_raw_snps.recal.
+Write-protecting output file aligned_reads/DAMICO_raw_indels.recal.
+Write-protecting output file aligned_reads/DAMICO_raw_indels.tranches.
+Write-protecting output file aligned_reads/DAMICO_raw_snps.tranches.
+[Thu Jan  5 21:56:45 2023]
+Finished job 3.
+1 of 4 steps (25%) done
+
+[Thu Jan  5 21:56:45 2023]
+Job 2: Successively apply the indel and SNP recalibrations to the full callset using ApplyVQSR on aligned_reads/DAMICO_raw_snps_indels.vcf.gz
+
+Write-protecting output file aligned_reads/DAMICO_raw_snps_indels.recalibrated.vcf.gz.
+Removing temporary output file aligned_reads/DAMICO_raw_snps_indels.recalibrated_tmp.vcf.gz.
+[Thu Jan  5 21:56:58 2023]
+Finished job 2.
+2 of 4 steps (50%) done
+
+[Thu Jan  5 21:56:58 2023]
+Job 1: Compare aligned_reads/DAMICO_raw_snps_indels.recalibrated.vcf.gz callset against a known population callset(dbspn) using VariantEval 
+
+[Thu Jan  5 21:56:59 2023]
+Error in rule VariantEval:
+    jobid: 1
+    output: aligned_reads/DAMICO_Eval.txt
+    log: logs/VariantEval/DAMICO.log (check log file(s) for error message)
+    shell:
+        gatk --java-options "-Xmx20g" VariantEval         -R /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/references/hg38.fa         -eval aligned_reads/DAMICO_raw_snps_indels.recalibrated.vcf.gz         -D /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/references/hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf.gz          -noEV          -EV CompOverlap         -EV IndelSummary         -EV TiTvVariantEvaluator          -EV CountVariants         -EV MultiallelicSummary          -O aligned_reads/DAMICO_Eval.txt &> logs/VariantEval/DAMICO.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/.snakemake/log/2023-01-05T215242.886082.snakemake.log

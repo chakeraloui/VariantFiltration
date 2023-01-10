@@ -1,0 +1,13 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	gatk_Funcotator
+	2
+
+[Fri Jan  6 15:34:01 2023]
+Job 1: Annotating aligned_reads/DAMICO_raw_snps_indels_recalibrated.vcf.gz vcf using Funcotator 
+

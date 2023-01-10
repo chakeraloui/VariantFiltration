@@ -2,11 +2,11 @@
 
 
 ##### Set up wildcards #####
-configfile: "./config/config.yaml"
+configfile: "config/config.yaml"
 # Define samples from fastq dir and families/cohorts from pedigree dir using wildcards
 
 FAMILIES, = glob_wildcards("../pedigrees/{family}_pedigree.ped")
-SAMPLES, = glob_wildcards("aligned_reads/{family}_raw_snps_indels_tmp_combined.g.vcf.gz") # to adapt
+SAMPLES, = glob_wildcards("VcfToAnnotate/{family}_raw_snps_indels.vcf.gz") # to adapt
 
 
 ##### Setup helper functions #####
@@ -22,8 +22,8 @@ def get_recal_indels_resources_command(resource):
     
     command = ""
     
-    for resource in config['INDELS']['RESOURCES']:
-        command += " -resource: " + resource + " "
+    for resource in config['INDELS-RESOURCES']:
+        command += " -resource:" + resource + " "
         
     return command
 ##################"
@@ -36,8 +36,8 @@ def get_recal_snps_resources_command(resource):
     
     command = ""
     
-    for resource in config['SNPS']['RESOURCES']:
-        command += " -resource: " + resource + " "
+    for resource in config['SNPS-RESOURCES']:
+        command += " -resource:" + resource + " "
         
     return command
 ##################"
@@ -63,15 +63,16 @@ def get_wes_intervals_command(resource):
 if config['VQSR'] == "Yes" or config['VQSR'] == 'yes':
     rule all:
         input:
-            expand("aligned_reads/{family}_raw_snps.recalibrated.vcf.gz", family = SAMPLES),
-            expand("aligned_reads/{family}_raw_snps.recalibrated.vcf.gz", family = SAMPLES),
+            #expand("annotation_filtration/{family}_raw_snps.recalibrated.vcf.gz", family = SAMPLES),
+            #expand("annotation_filtration/{family}_Eval.txt", family = SAMPLES),
+            expand("annotation_filtration/{family}_raw_snps_indels_recalibrated_annotated.vcf.gz",family = SAMPLES)
             
 
 if config['VQSR'] == "No" or config['VQSR'] == 'no':
     rule all:
         input:
-            expand("aligned_reads/{family}_raw_snps.vcf.gz",family = SAMPLES),
-            expand("aligned_reads/{family}_raw_indels.vcf.gz", family = SAMPLES)
+            expand("annotation_filtration/{family}_raw_snps.vcf.gz",family = SAMPLES),
+            expand("annotation_filtration/{family}_raw_indels.vcf.gz", family = SAMPLES)
 
 ##### Load rules #####
 #localrules: multiqc
@@ -84,10 +85,11 @@ if config['VQSR'] == "No" or config['VQSR'] == "no":
     include: "rules/gatk_SelectVariants.smk"
 
 if config['VQSR'] == "Yes" or config['VQSR'] == "yes":
-    include: "rules/gatk_VariantFiltration10000.smk"
+    #include: "rules/gatk_VariantFiltration10000.smk"
     include: "rules/gatk_VariantRecalibrator10000.smk"
     include: "rules/gatk_ApplyVQSR10000.smk"
-    
+    include: "rules/gatk_VariantEval.smk"
+    include: "rules/gatk_Funcotator.smk"
 
 
 

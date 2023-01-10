@@ -12,3 +12,5 @@ dependencies:
   -gatk  =4.1.0.0
   -fasttqc =0.11.9
   -gsutil =5.16
+  -r-base=3.6.3
+  -r-ggplot2=3.4.0

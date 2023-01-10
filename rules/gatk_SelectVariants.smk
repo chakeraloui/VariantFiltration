@@ -1,14 +1,14 @@
 rule gatk_SelectVariants:
     input:
-        vcf = "aligned_reads/{family}_raw_snps_indels_hard_filter_verified_annotated_filtered.vcf.gz"
+        vcf = "annotation_filtration/{family}_raw_snps_indels_hard_filter_verified_annotated_filtered.vcf.gz"
         
     output:
-        vcf1 = protected("aligned_reads/{family}_raw_snps.vcf.gz"),
-        vcf2 = protected("aligned_reads/{family}_raw_indels.vcf.gz")
+        vcf1 = protected("annotation_filtration/{family}_raw_snps.vcf.gz"),
+        vcf2 = protected("annotation_filtration/{family}_raw_indels.vcf.gz")
     params:
         maxmemory = expand('"-Xmx{maxmemory}"', maxmemory = config['MAXMEMORY']),
         threads= expand('"-XX:ParallelGCThreads={threads}"', threads = config['THREADS']),
-        CountVariants_name= "aligned_reads/{family}_CountVariants"
+        CountVariants_name= "annotation_filtration/{family}_CountVariants"
     log:
         "logs/SelectVariants/{family}.log"
     benchmark:

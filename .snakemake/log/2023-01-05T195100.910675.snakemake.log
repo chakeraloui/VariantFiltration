@@ -1,0 +1,12 @@
+Building DAG of jobs...
+Job counts:
+	count	jobs
+	1	all
+	1	gatk_ApplyVQSR
+	2
+
+[Thu Jan  5 19:51:00 2023]
+Job 1: Successively apply the indel and SNP recalibrations to the full callset using ApplyVQSR on aligned_reads/DAMICO_raw_snps_indels_sitesonly.vcf.gz
+
+RuleException in line 1 of /mnt/linuxRDB/FamilyDAMICO_pipelineVC_GATK4/VariantFiltration/rules/gatk_ApplyVQSR10000.smk:
+'InputFiles' object has no attribute 'vcf1'
